@@ -27,6 +27,7 @@ import pandas as pd
 import time
 from time import sleep
 import progressbar
+# from console_progressbar import ProgressBar
 
 # -----------------------------------------------------------------------------
 # INPUTS:
@@ -53,22 +54,21 @@ file_out = path + output
 codigos = pd.read_csv(file_in)
 codigos = codigos.values.tolist()
 codigos = [item[0] for item in codigos]
+# codigos = codigos[:round(len(codigos)/2)]
 
 # -----------------------------------------------------------------------------
 # ## Generamos los últimos parámetros
-nfinal = len(codigos) - 1
+nfinal = len(codigos)
 nparcial = 1
 
 # -----------------------------------------------------------------------------
 # PROCESO:
-bar = progressbar.ProgressBar(maxval = len(codigos), \
-    widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
+# printProgressBar(0, nfinal, prefix = 'Progress:', suffix = 'Complete', length = 50)
 inicio = time.time()
 ## Realizamos el bucle para cada uno de los medicamentos a buscar
-bar.start()
-for codigo in codigos:
+for i in range(0, len(codigos)):
     # Generamos la url para descargar
-    url_descargar = url + str(codigo)
+    url_descargar = url + str(codigos[i])
     
     # Nos conectamos a la web que hemos generado
     r = requests.get(url_descargar)
@@ -188,14 +188,19 @@ for codigo in codigos:
     lista.append(lista_res)
     
     # Imprimimos el porcentaje de completado del sistema
-    bar.update(nparcial + 1)
+    # printProgressBar(i + 1, nfinal, prefix = 'Progress:', suffix = 'Complete', length = 50)
+
+    # Vamos a realizar un sleep (un parón) cuando llevemos 300 registros descargados
+    segundos = 0.5
+    if (i % 300 == 0 and i != 0):
+        print("\nCodigo número", i, "- Hacemos una pausa de ", segundos, " segundos.\n")
+        sleep(segundos)
 
 # Comprobamos el tiempo de ejecución
-bar.finish()
 final = time.time()
 
 # Imprimimos el tiempo que ha transcurrido
-print ('\nHa transcurrido ', final - inicio, 'minutos.\n')
+print ('\nHa transcurrido ', (final - inicio)/60, 'minutos.\n')
 
 # -----------------------------------------------------------------------------
 # GUARDAR EL CSV
