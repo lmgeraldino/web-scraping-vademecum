@@ -12,7 +12,7 @@ class PrecioScraper():
     text = text.replace('\n', '')
     text = text.replace('\t', '')
     text = text.replace('\r', '')
-    text = text.replace(' ', '')
+    text = text.strip(' ')
     return text
 
   def scrap(self, codigo_medicamento):
