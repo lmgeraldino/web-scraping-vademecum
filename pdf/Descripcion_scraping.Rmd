@@ -1,0 +1,55 @@
+---
+title: 'Dataset:'
+author: "Luis Manuel Pérez Geraldino y Sergi Ramírez Mitjans"
+date: "3 de abril de 2019"
+header-includes:
+  - \usepackage[spanish]{babel}
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    self_contained: yes
+    css: corp-style.css
+    highlight: pygments
+---
+
+<img src="logo.svg" style="position:absolute;top:0px;right:0px;" />
+<div class="watermark">DRAFT</div>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, cache = FALSE, eval = TRUE)
+```
+
+## 1. Contexto
+
+## 2. Descripción del dataset
+
+## 3. Representación gráfica
+### 3.1 Imagen del dataset
+### 3.2 Esquema del dataset
+
+## 4. Contenido
+
+### 4.1 Variables del dataset
+Nuestro dataset obtenido al final de cada proceso 
+
+### 4.2 Periodo de tiempo de los datos
+
+### 4.3 Proceso de colección de los datos
+
+## 5. Agradecimientos
+
+## 6. Inspiración
+
+## 7.Licencia
+
+## 8.Bibliografia
+
+1. Subirats, L., Calvo, M. (2018). Web Scraping. Editorial UOC.
+2. Masip, D. El lenguaje Python. Editorial UOC.
+3. Lawson, R. (2015). Web Scraping with Python. Packt Publishing Ltd. Chapter 2. Scraping the Data
+4. Mitchel, R. (2015). Web Scraping with Python: Collecting Data from the Modern Web. O'Reilly Media, Inc. Chapter 1. Your First Web Scraper.
+5. Munzert, S., Rubba, C., Meißner, P., Nyhuis, D. (2015). Automated Data Collection with R: A Practical Guide to Web Scraping and Text Mining. John Wiley & Sons.
+6. Tutorial de Github https://guides.github.com/activities/hello-world.
