@@ -4,15 +4,15 @@ from bs4 import BeautifulSoup
 class PrecioScraper():
 
   PRECIO_URL = 'https://www.mscbs.gob.es/profesionales/nomenclator.do?metodo=verDetalle&prod='
-  DATAFRAME_HEADER = ['NOMPROD', 'TIPOFAR', 'NOMGEN', 'LABOR', 'ESTADO', 'FECALTA', 'FECBAJA', 'APORTACION', 'PRINCACT',
-                'PRECIO', 'MINPREC', 'CODAGR', 'NOMAGR', 'DIAGHOSP', 'TTOLARGADURADA', 'CNTRMEDICO', 'MEDHUERFANO']
+  DATAFRAME_HEADER = ['Tipo', 'Generico', 'Laboratorio', 'Estado', 'Fecha alta', 'Fecha baja', 'Aportacion beneficiario', 'Principio activo',
+                'PVP', 'Precio referencia', 'Menor precio agrupacion homogenea', 'Agrupacion homogenea', 'Diasnostico hospitalario', 'Tratamiento larga duracion', 'Control medico', 'Huerfano']
 
   def __obtener_valor_celda__(self, celda):
     text = celda.get_text()
     text = text.replace('\n', '')
     text = text.replace('\t', '')
-    text = text.replace('\r', '')
-    text = text.strip(' ')
+    text = text.replace('\r', ' ')
+    text = text.strip()
     return text
 
   def scrap(self, codigo_medicamento):
@@ -33,7 +33,6 @@ class PrecioScraper():
       celda = row.find_all('td')
     
       # Guardamos cada valor en una variable
-      nomprod = self.__obtener_valor_celda__(celda[1])
       tipofar = self.__obtener_valor_celda__(celda[2])
       nomgen = self.__obtener_valor_celda__(celda[3])
       labor = self.__obtener_valor_celda__(celda[4])
@@ -42,18 +41,18 @@ class PrecioScraper():
       fecbaja = self.__obtener_valor_celda__(celda[7])
       aportacion = self.__obtener_valor_celda__(celda[8])
       princact = self.__obtener_valor_celda__(celda[9])
-      precio = self.__obtener_valor_celda__(celda[10])
-      minprec = self.__obtener_valor_celda__(celda[11])
-      codagr = self.__obtener_valor_celda__(celda[12])
-      nomagr = self.__obtener_valor_celda__(celda[13])
+      pvp = self.__obtener_valor_celda__(celda[10])
+      precref = self.__obtener_valor_celda__(celda[11])
+      minprec = self.__obtener_valor_celda__(celda[12])
+      agrhom = self.__obtener_valor_celda__(celda[13])
       diaghosp = self.__obtener_valor_celda__(celda[14])
       ttolargadurada = self.__obtener_valor_celda__(celda[15])
       cntrmedico = self.__obtener_valor_celda__(celda[16])
       medhuerfano = self.__obtener_valor_celda__(celda[17])
   
       # Generamos el output en formato de lista para incorporar
-      lista_res = [nomprod, tipofar, nomgen, labor, estado, fecalta, fecbaja, aportacion, princact, precio,
-             minprec, codagr, nomagr, diaghosp, ttolargadurada, cntrmedico, medhuerfano]
+      lista_res = [tipofar, nomgen, labor, estado, fecalta, fecbaja, aportacion, princact, pvp,
+             precref, minprec, agrhom, agrhom, diaghosp, ttolargadurada, cntrmedico, medhuerfano]
       result.append(lista_res)
 
     return result
