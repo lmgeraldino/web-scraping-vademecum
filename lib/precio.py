@@ -4,8 +4,8 @@ from bs4 import BeautifulSoup
 class PrecioScraper():
 
   PRECIO_URL = 'https://www.mscbs.gob.es/profesionales/nomenclator.do?metodo=verDetalle&prod='
-  DATAFRAME_HEADER = ['Tipo', 'Generico', 'Laboratorio', 'Estado', 'Fecha alta', 'Fecha baja', 'Aportacion beneficiario', 'Principio activo',
-                'PVP', 'Precio referencia', 'Menor precio agrupacion homogenea', 'Agrupacion homogenea', 'Diasnostico hospitalario', 'Tratamiento larga duracion', 'Control medico', 'Huerfano']
+  DATAFRAME_HEADER = ['Tipo', 'Genérico', 'Laboratorio', 'Estado', 'Fecha alta', 'Fecha baja', 'Aportación beneficiario', 'Principio activo',
+                'PVP', 'Precio referencia', 'Menor precio agrupación homogénea', 'Agrupación homogénea', 'Diasgnóstico hospitalario', 'Tratamiento larga duración', 'Control médico', 'Huérfano']
 
   def __obtener_valor_celda__(self, celda):
     text = celda.get_text()

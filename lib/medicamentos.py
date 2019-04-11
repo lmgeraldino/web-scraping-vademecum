@@ -10,6 +10,7 @@ class MedicamentosScraper():
   def __init__(self):
     self.data = []
     self.precio_scraper = PrecioScraper()
+    self.dataframe_header = ['Medicamento', 'URL', 'Presentación', 'Código Nacional'] + self.precio_scraper.DATAFRAME_HEADER
 
   def __is_facturable_sns(self, presentacion):
     for elem in presentacion.find_all('li'):
@@ -25,6 +26,9 @@ class MedicamentosScraper():
   def __get_titulo(self, presentacion): 
     return presentacion.find('li', {'class':'title'}).text.strip()
 
+  def get_dataframe_header(self):
+    return DATAFRAME_HEADER + self.precio_scraper.DATAFRAME_HEADER
+
   def scrap(self, medicamento):
     search_url = self.VADEMECUM_URL + '/buscar?q=' + medicamento
 
@@ -34,7 +38,7 @@ class MedicamentosScraper():
     medicamentos = search_soup.find_all('a', {'title':'medicamento'})
 
     resultList = []
-    resultList.append(self.DAFAFRAME_HEADER + self.precio_scraper.DATAFRAME_HEADER)
+    #resultList.append(self.DAFAFRAME_HEADER)
 
     for m in medicamentos:
       medicamento_url = self.VADEMECUM_URL + m['href']
