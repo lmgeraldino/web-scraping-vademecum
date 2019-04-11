@@ -1,9 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
+from .utils import get_random_user_agent
 
 class PrecioScraper():
-
-  PRECIO_URL = 'https://www.mscbs.gob.es/profesionales/nomenclator.do?metodo=verDetalle&prod='
+  BASE_URL = 'https://www.mscbs.gob.es/'
+  PRECIO_URL = BASE_URL + 'profesionales/nomenclator.do?metodo=verDetalle&prod='
   DATAFRAME_HEADER = ['Tipo', 'Genérico', 'Laboratorio', 'Estado', 'Fecha alta', 'Fecha baja', 'Aportación beneficiario', 'Principio activo',
                 'PVP', 'Precio referencia', 'Menor precio agrupación homogénea', 'Agrupación homogénea', 'Diasgnóstico hospitalario', 'Tratamiento larga duración', 'Control médico', 'Huérfano']
 
@@ -19,7 +20,7 @@ class PrecioScraper():
     result = []
     search_url = self.PRECIO_URL + str(codigo_medicamento)
     
-    search_page = requests.get(search_url)
+    search_page = requests.get(search_url, headers = {'User-Agent': get_random_user_agent()})
     search_soup = BeautifulSoup(search_page.text, 'html.parser')
     
     # Nos quedamos con la tabla que queremos obtener su información

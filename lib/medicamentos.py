@@ -1,10 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 from .precio import PrecioScraper
+from .utils import get_random_user_agent
 
 class MedicamentosScraper():
   
-  VADEMECUM_URL = 'https://www.vademecum.es'
+  VADEMECUM_URL = 'https://www.vademecum.es/'
   DAFAFRAME_HEADER = ['Medicamento', 'URL', 'Presentación', 'Código Nacional']
 
   def __init__(self):
@@ -30,9 +31,9 @@ class MedicamentosScraper():
     return DATAFRAME_HEADER + self.precio_scraper.DATAFRAME_HEADER
 
   def scrap(self, medicamento):
-    search_url = self.VADEMECUM_URL + '/buscar?q=' + medicamento
+    search_url = self.VADEMECUM_URL + 'buscar?q=' + medicamento
 
-    search_page = requests.get(search_url)
+    search_page = requests.get(search_url, headers = {'User-Agent': get_random_user_agent()})
     search_soup = BeautifulSoup(search_page.content, 'html.parser')
 
     medicamentos = search_soup.find_all('a', {'title':'medicamento'})
