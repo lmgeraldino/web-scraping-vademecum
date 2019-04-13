@@ -1,7 +1,6 @@
 from lib.medicamentos import MedicamentosScraper
 from lib.precio import PrecioScraper
 import lib.utils as utils
-import sys
 
 scraper = MedicamentosScraper()
 
@@ -24,7 +23,6 @@ print('Procesando', len(medicamentos), 'medicamentos...')
 print('------------------------------------')
 for index, medicamento in enumerate(medicamentos, start = 1):
   print(index, '-', medicamento) 
-  #param = sys.argv[1]
   result = result +  scraper.scrap(medicamento)
 
 utils.to_csv('result/result.csv', result)
