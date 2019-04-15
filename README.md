@@ -14,4 +14,7 @@ Práctica de la asignatura _Tipología y ciclo de vida de los datos_, pertenecie
 Se debe invocar al fichero con un parámetro a buscar: 
 `python3 main.py paracetamol`
 
+El parámetro de busqueda puede ser tanto un sólo medicamento como un conjunto de medicamentos. 
+
+
 El resultado del proceso de scraping se guardará en el fichero result.csv
