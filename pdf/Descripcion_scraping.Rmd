@@ -37,26 +37,25 @@ options(scipen=999)
 ## INPUT DE PARAMETROS
 # path <- 'G:\\MASTER UOC\\TIPOLOGIA DE LA VIDA DE LOS DATOS\\PRAC1\\'
 path <- 'C:\\Users\\SergiR\\Desktop\\web-scraping-vademecum-master\\pdf\\'
-archivos <- paste0(path, 'codbook_variables.xlsx')
+archivos <- 'codbook_variables.xlsx'
 ```
 
 
 ## 1. Contexto
 
-Recientemente han salido en las noticias informaciones que hablaban de que el ministerio de salud ha dejado de financiar medicamentos debido al mal uso que la población española estaba haciendo de ellos. Al ver dichas noticias, fue tal la necesidad de estudiar la estructura monetaria de los precios de los medicamentos que nos planteamos realizar un estudio de ello mediante el scraping de la información en la web.
+Recientemente han salido noticias sobre que el Ministerio de Salud ha dejado de financiar medicamentos debido al mal uso que la población española estaba haciendo de ellos. Al ver dicha información, fue tal la necesidad de estudiar la estructura monetaria de los precios de los medicamentos que nos planteamos realizar un estudio de ello mediante el scraping de la información en la web.
 
-A demás también teniamos conocimiento que muchas de las fundaciones que se dedican a la investigación en los hospitales dedican parte de sus recursos para investigar en la ciencia de la farmacoeconomia (ciencia que estudia el gasto de los pacientes en su medicación para poder mejorar el riesgo de mejora en calidad de vida versus gastos en esos tratamientos).
+Además también teníamos conocimiento que muchas de las fundaciones que se dedican a la investigación en los hospitales dedican parte de sus recursos para investigar en la ciencia de la farmacoeconomía (ciencia que estudia el gasto de los pacientes en su medicación para poder mejorar el riesgo de mejora en calidad de vida versus gastos en esos tratamientos).
 
 Por lo tanto al final el trabajo giraba a 3 objetivos: 
 
-  - Conocer la metodologia de scraping para obtener información de internet
-  
-  - Poder conocer la estructura de los medicamentos financiados por el ministerio de salud
-  - Generar un dataset donde contenga información de los medicamentos (tanto características como economica) para facilitarla a las fundaciones hospitalarias (en la medida que fuera posible) para realizar esos estudios farmacoeconomicos
+  - Conocer la metodología de scraping para obtener información de internet
+  - Poder conocer la estructura de los medicamentos financiados por el Ministerio de Salud
+  - Generar un dataset que contenga información de los medicamentos (tanto características como económica) para facilitarla a las fundaciones hospitalarias (en la medida que fuera posible) para realizar esos estudios farmacoeconómicos.
  
 ## 2. Descripción del dataset
 
-El conjunto de datos obtenido recoge los medicamentos con más facturación en el mundo farmacéutico. A la vez también esta incorporado los medicamentos más consumidos en España. Este dataset es un dataset variable ya que se tendrá tantos medicamentos como el que use el código demande. Esto es posible ya que el código esta preparado para hacer de buscador y extractor de aquellos medicamentos que se pasen por parámetros. Algunas variables de las que encontramos en el dataset seria el precio, nombre del medicamente, generico o url del vademecum.  
+El conjunto de datos obtenido recoge los medicamentos con más facturación en el mundo farmacéutico. A la vez también esta incorporado los medicamentos más consumidos en España. Este dataset es variable ya que se tendrán tantos medicamentos como el código demande. Esto es posible ya que el código esta preparado para hacer de buscador y extractor de aquellos medicamentos que se pasen por parámetros. Algunas variables de las que encontramos en el dataset sería el precio, nombre del medicamente, genérico o url del Vademecum.
 
 ## 3. Representación gráfica
 
@@ -129,46 +128,46 @@ print(codbook, tabular.environment="tabularx", width="\\textwidth", comment = FA
 
 ### 4.2 Periodo de tiempo de los datos
 
-La web del vademecum recoge todos los medicamentos disponibles en la red de farmacias y medicamentos que hay en el mundo. Esta información la recogen de las industrias farmacéuticas encargadas de generar los medicamentos. Por lo tanto en dicha *web* no existe una ventana temporal destacable.
+La web del Vademecum recoge todos los medicamentos disponibles en la red de farmacias y medicamentos que hay en el mundo. Esta información la recogen de las industrias farmacéuticas encargadas de generar los medicamentos. Por lo tanto en dicha *web* no existe una ventana temporal destacable.
 
-Por la contra, la página web del buscador del ministerio si que incorpora información monetaria de los medicamentos que estan financiados por el propio ministerio. Esta base de datos esta actualizada a los nuevos cambios que se han originado en el mes de Marzo. Por lo tanto la base de datos esta actualizada para Abril de 2019.
+Por la contra, la página web del buscador del Ministerio si que incorpora información monetaria de los medicamentos que estan financiados por el propio Ministerio. Esta base de datos esta actualizada a los nuevos cambios que se han originado en el mes de Marzo. Por lo tanto la base de datos esta actualizada para Abril de 2019.
 
 ### 4.3 Proceso de colección de los datos
 
-Para llegar al dataset que se puede encontrar en la carpeta result, se ha necesitado seguir un proceso de colección de los datos que acontinuación detallaré. 
+Para llegar al dataset que se puede encontrar en la carpeta result, se ha necesitado seguir un proceso de colección de los datos que acontinuación detallaremos.
 
 Primeramente realizamos un estudio del archivo robots.txt para comprobar si nuestro user-agent esta permitido en la web para la descarga. Si no fuera así, el proceso incorpora un user-agent aleatorio para que podamos seguir con el proceso de descarga. 
 
-Después de la comprobación del robot.txt iniciamos la búsqueda del medicamento o medicamentos que hemos pasado por parámetro y lo buscamos en la web del vademecum. 
+Después de la comprobación del robots.txt iniciamos la búsqueda del medicamento o medicamentos que hemos pasado por parámetro y lo buscamos en la web del Vademecum. 
 Una vez encontrado nos guardamos la url del medicamento, el código nacional, el nombre del medicamento y en que envase se distribuye el medicamento. 
 
-Una vez tengamos el código nacional del medicamento, vamos a la página oficial del ministerio de salud donde encontramos una base de datos de los precios subvencionados de los medicamentos. A continuación incorporamos en el formulario dicho código y obtenemos una serie de variables a parte del precio (la lista de las variables se encuentra en el apartado 4.1.2 de este documento).
+Una vez tengamos el código nacional del medicamento, vamos a la página oficial del Ministerio de Salud donde encontramos una base de datos de los precios subvencionados de los medicamentos. A continuación, incorporamos en el formulario dicho código y obtenemos una serie de variables a parte del precio (la lista de las variables se encuentra en el apartado 4.1.2 de este documento).
 
 
 ## 5. Agradecimientos
 
-Los datos han sido extraidos de las web vademecum y del ministerio de sanidad, política social e igualdad de España. Estos datos se extraen a partir de técnicas de Web Scraping que nos permite descargar información de páginas web sin la necesidad de ir página a página copiando la información ya que seria una alta carga de tiempo para el usuario. Por lo tanto realizando el Web Scraping nos "curamos en salud" y convertimos las horas de tiempo de persona en horas de tiempo de máquina. Toda la programación se ha realizado mediante Python.
+Los datos han sido extraidos de las web Vademecum y del Ministerio de Sanidad, Política Social e Igualdad de España. Estos datos se extraen a partir de técnicas de Web Scraping que nos permite descargar información de páginas web sin la necesidad de ir página a página copiando la información ya que seria una alta carga de tiempo para el usuario. Por lo tanto realizando el Web Scraping nos "curamos en salud" y convertimos las horas de tiempo de persona en horas de tiempo de máquina. Toda la programación se ha realizado mediante Python.
 
 
 ## 6. Inspiración
 
-Los datos obtenidos son unos datos muy especificos que sólo podriamos usarlos en el mundo de la sanidad y la economia. Gracias a los datos obtenidos podriamos llegar a realizar un estudio del gasto que genera cada paciente en los tratamientos que necesita para curar una enfermedad (farmacoeconomia). Para ello una vez obtenida la tabla de datos donde tuvieramos características de los medicamentos, precio de los medicamentos e información de los pacientes podriamos ajustar estos tratamientos mediante modelos de Machine Learning dependiendo de la renta de cada paciente.
+Los datos obtenidos son tan especificos que sólo podriamos usarlos en el mundo de la sanidad y la economía. Gracias a los datos obtenidos podríamos llegar a realizar un estudio del gasto que genera cada paciente en los tratamientos que necesita para curar una enfermedad (farmacoeconomía). Para ello, una vez obtenida la tabla de datos donde tuviéramos características de los medicamentos, precio de los medicamentos e información de los pacientes podríamos ajustar estos tratamientos mediante modelos de Machine Learning dependiendo de la renta de cada paciente.
 
-Estos estudios nos permitirian trabajar tanto para hospitales como para instituciones públicas a realizar campañas e incluso inversiones en según que tipo de medicamentos que su coste es mas alto del que se pueda esperar. 
+Estos estudios nos permitirian trabajar tanto para hospitales como para instituciones públicas a realizar campañas e incluso inversiones en según que tipo de medicamentos que su coste es más alto del que se pueda esperar. 
 
 ## 7. Licencia
 
-Barajando las múltiples posibilidades de licencia a escoger, para nuestra publicación de datos hemos escogido la **licencia CC BY-SA 4.0 License**. Esta licencia se define por las siguientes características:
+Barajando las múltiples posibilidades de licencia a escoger, para nuestra publicación de datos hemos escogido la **licencia CC BY-SA 4.0 License**, que se define por las siguientes características:
 
-- Primero de todo deben incluir los nombres de los creadores. Utilizando esta clásula nos permetiria que se nos identificara como creadores originales de la base de datos y por lo tanto deberian de notificar cualquier cambio realizado en la base de datos, que el autor original somos nosotros. 
+- Primero de todo deben incluir los nombres de los creadores. Utilizando esta clásula nos permitiría que se nos identificara como creadores originales de la base de datos y por lo tanto deberían de notificar cualquier cambio realizado en la base de datos, que los autores originales somos nosotros. 
   
-- Las contribuciones que puedan realizar a nuestra base de datos tendran la misma licencia que la que actualmente estamos definiendo. Esta cláusula es así debido a ue nosotros queremos que no sólo nuestra autoria intelectual se hereden en futuros desarrollos de nuestra base de datos sino también las condiciones de distribucion se debera regir bajo la misma licencia.Con esta decision, nosotros comprometemos a que la base de datos se podra seguir usando sin restricciones y además veneficiamos al Open Data (Datos abiertos).
+- Las contribuciones que puedan realizar a nuestra base de datos tendrán la misma licencia que la que actualmente estamos definiendo. Esta cláusula es así debido a que nosotros queremos que no sólo nuestra autoria intelectual se hereden en futuros desarrollos de nuestra base de datos sino también las condiciones de distribución se deberá regir bajo la misma licencia. Con esta decisión, nosotros comprometemos a que la base de datos se podrá seguir usando sin restricciones y además beneficiamos a los movimientos de datos abiertos existentes.
 
-Pareceria raro que si nuestro planteamiento inicial era para fomentar el estudio farmacoeconomico de hospitales al final acabamos diciendo que también sirve para comercializar con ella. Es verdad que nuestro produto no sólo va destinado a la investigación de costes de tratamientos sino también permetiria a las empresas ver precios de la competencia, necesidades, tipos de medicamentos que hay en el mercado e incluso la falta de medicamentos o poca competencia de algun sector del genérico.
+Parecería raro que si nuestro planteamiento inicial era para fomentar el estudio farmacoeconómico de hospitales al final acabamos diciendo que también sirve para comercializar con ella. Es verdad que nuestro produto no sólo va destinado a la investigación de costes de tratamientos sino también permitiría a las empresas ver precios de la competencia, necesidades, tipos de medicamentos que hay en el mercado e incluso la falta de medicamentos o poca competencia de algún sector del genérico.
     
-- Se permite un uso comercial. Como hemos decidido que se nos permite el uso comercial, se nos podria abrir proyectos en empresas donde podrian hacer uso de los datos generados para que pudiesen tanto vender los medicamentos como por ejemplo hacer estudios de viabilidad. Al final también podriamos incluir una licencia de acceso a los datos mediante un web service para gestionar licencias de mantenimiento de la base de datos. 
+- Como hemos decidido que se nos permite el uso comercial, se nos podría abrir proyectos en empresas donde podrían hacer uso de los datos generados para que pudiesen tanto vender los medicamentos como por ejemplo hacer estudios de viabilidad. Al final, también podríamos incluir una licencia de acceso a los datos mediante un web service para gestionar licencias de mantenimiento de la base de datos. 
 
-Para acabar decir que una forma de escoger el tipo de licencia creative commons seria hacer uso de su propia web. En ella podemos encontrar un formulario que te permite identificar la licencia que más de asjusta a los parámetros que queremos. El enlace se encuentra en la siguiente ruta [https://creativecommons.org/choose/](https://creativecommons.org/choose/). 
+Para acabar decir que una forma de escoger el tipo de licencia Creative Commons seria hacer uso de su propia web. En ella podemos encontrar un formulario que te permite identificar la licencia que más de asjusta a los parámetros que queremos. El enlace se encuentra en la siguiente ruta [https://creativecommons.org/choose/](https://creativecommons.org/choose/). 
 
 ## 8. Tabla de contribuciones
 
@@ -180,15 +179,15 @@ A continuación se muestra la tabla de contribución de dicho proyecto.
 |   Redacción de las respuestas   |   LMPG, SRM   |
 |       Desarrollo código         |   LMPG, SRM   |
 
-## 9. Futuras lineas de trabajo
+## 9. Futuras líneas de trabajo
 
-En cuanto a linias futuras de trabajo podemos explicar 3:
+En cuanto a líneas futuras de trabajo podemos explicar 3:
 
-  - La primera trataria de perfilar la forma de automatizar los posibles baneos que nos pudieran ocurrir. Como en las dos web que consultamos no tenemos restricciones de descargas, no podemos desarrollar unos métodos automáticos de detección de baneos pero si entendemos que en posibles descarga de datos más complejas pudieramos necesitar de estos métodos. 
+  - La primera trataria de perfilar la forma de automatizar los posibles baneos que nos pudieran ocurrir. Como en las dos web que consultamos no tenemos restricciones de descargas, no podemos desarrollar unos métodos automáticos de detección de baneos pero si entendemos que en posibles descarga de datos más complejas pudieramos necesitar de estos métodos.
   
-  - Desarrollar más el scraping a realizar en la web de vademecum. Dicha web es muy compleja e incorpora mucha información que en este trabajo no hemos podido abarcar. 
+  - Desarrollar más el scraping a realizar en la web de Vademecum. Dicha web es muy compleja e incorpora mucha información que en este trabajo no hemos podido abarcar. 
   
-  - Aprender de otras herramientas de Web Scraping como podria ser el Selenium.
+  - Aprender de otras herramientas de Web Scraping como podría ser el Selenium.
 
 ## 10. Código
 
