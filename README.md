@@ -9,13 +9,16 @@ Práctica de la asignatura _Tipología y ciclo de vida de los datos_, pertenecie
 - Luis Manuel Pérez Geraldino
 - Sergi Ramirez Mitjans
 
+## Estructura
+
+- main.py: fichero a ejecutar
+- lib: ficheros Python que realizan web scraping sobre las webs definidas
+- result: Fichero CSV con la salida del programa una vez ejecutado
+- pdf:  Informe y respuestas de las preguntas propuestas
+
 ## Funcionamiento 
 
 Se debe invocar al fichero con un parámetro a buscar: 
-`python3 main.py paracetamol`
+`python3 main.py`
 
-- El parámetro de busqueda puede ser tanto un sólo medicamento como un conjunto de medicamentos. 
-
-## Resultado
-
-El resultado del proceso de scraping se guardará en el fichero result.csv
+- El fichero main.py contiene una seria de medicamentos con lo que se desea buscar. 
