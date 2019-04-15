@@ -2,7 +2,7 @@
 
 ## Descripción
 
-Práctica de la asignatura _Tipología y ciclo de vida de los datos_, perteneciente al Máster en Ciencia de Datos de la Universitat Oberta de Catalunya. Se aplican técnica de _web scraping_ mediante Python para generar un dataset a partir del Vademecum.
+Práctica de la asignatura _Tipología y ciclo de vida de los datos_, perteneciente al Máster en Ciencia de Datos de la Universitat Oberta de Catalunya. Se aplican técnica de _web scraping_ mediante Python para generar un dataset a partir de medicamentos.
 
 ## Equipo
 
@@ -16,5 +16,6 @@ Se debe invocar al fichero con un parámetro a buscar:
 
 - El parámetro de busqueda puede ser tanto un sólo medicamento como un conjunto de medicamentos. 
 
+## Resultado
 
 El resultado del proceso de scraping se guardará en el fichero result.csv
