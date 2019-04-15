@@ -2,7 +2,7 @@
 
 ## Descripción
 
-Práctica de la asignatura _Tipología y ciclo de vida de los datos_, perteneciente al Máster en Ciencia de Datos de la Universitat Oberta de Catalunya. Se aplican técnica de _web scraping_ mediante Python para generar un dataset a partir de medicamentos.
+Práctica de la asignatura _Tipología y ciclo de vida de los datos_, perteneciente al Máster en Ciencia de Datos de la Universitat Oberta de Catalunya. Se aplican técnica de _web scraping_ mediante Python para generar un dataset de medicamentos.
 
 ## Equipo
 
